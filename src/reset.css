@@ -1,0 +1,19 @@
+html,body{
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  background-color: green;
+}
+h1{
+  padding: 0;
+  margin: 0;
+  transform: rotate(45deg);
+  width: 200px;
+}
+.el_container{
+  height: 200px;
+  width: 200px;
+  background: url('./timg.jpeg') no-repeat center center;
+  background-size: cover;
+  border: solid 1px #000;
+}
