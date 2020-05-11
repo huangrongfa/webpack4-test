@@ -1,14 +1,13 @@
 const path = require('path');
+const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
-const optimizeCss = require('optimize-css-assets-webpack-plugin');
-const webpack = require('webpack')
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const  apiConfig = require('./config/api')
 const HappyPack  = require('happypack')
-
 
 module.exports = {
   mode: 'development',
@@ -47,15 +46,7 @@ module.exports = {
         }
       }
     },
-    minimizer: [
-      new optimizeCss({
-        cssProcessor: require('cssnano'),
-        cssProcessorOptions: {
-          discardComments: { removeAll: true }
-        },
-        canPrint: true
-      })
-    ]
+    minimizer: []
   },
   resolve: { // 解析第三方包
     modules: [path.resolve('node_modules')],
@@ -81,6 +72,14 @@ module.exports = {
         minifyCSS: true,
         hash:true
       }
+    }),
+    new OptimizeCssAssetsPlugin({
+      cssProcessor: require('cssnano'),
+      cssProcessorOptions: { 
+        safe: true, 
+        discardComments: { removeAll: true } 
+      },
+      canPrint: true
     }),
     new UglifyJsPlugin(),
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/), // 忽略 moment 的本地化内容
