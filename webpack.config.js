@@ -23,7 +23,7 @@ module.exports = {
     compress: true,
     port: 9000,
     hot: true
-/*     proxyTable: {
+/*     proxyTable: { // 设置代理
       '^/api': {
         target: 'http://rongfa.com',
         changeOrigin: true,
@@ -73,7 +73,7 @@ module.exports = {
         hash:true
       }
     }),
-    new OptimizeCssAssetsPlugin({
+    new OptimizeCssAssetsPlugin({ // 压缩css代码
       cssProcessor: require('cssnano'),
       cssProcessorOptions: { 
         safe: true, 
